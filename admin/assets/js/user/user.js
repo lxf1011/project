@@ -26,7 +26,7 @@ function list() {
                             <a style="color: #fff" target="iframeArea" href="./edit.html?id=${item.id}">编辑</a>
                           </button>
                           <button data-id="${item.id}" type="button" class="layui-btn layui-btn-xs layui-btn-danger delete">删除</button>
-                          <button data-id="${item.id}" type="button" class="layui-btn layui-btn-xs layui-btn-normal delete">重置密码</button>
+                          <button data-id="${item.id}" type="button" class="layui-btn layui-btn-xs layui-btn-normal modify">重置密码</button>
                         </td>
                       </tr>`;
                     // console.log(item);
@@ -79,7 +79,7 @@ $('tbody').on('click', '.delete', function () {
 })
 
 $('tbody').on('click', '.modify', function (e) {
-    console.log(this);
+
     var id = $(e.target).data('id');
     // 弹窗
     var index = layer.open({
@@ -92,13 +92,14 @@ $('tbody').on('click', '.modify', function (e) {
     )
 
     // 重置密码
-    $('#rewd-form').submit(function (e) {
+    $('#repwd-form').submit(function (e) {
         e.preventDefault()
+        console.log($('#newpwd').val());
         $.ajax({
             type: 'put',
             url: 'admin/users/' + id,
             data: {
-                password: $('#repwd-form input[name=password]').val()
+                password: $('#newpwd').val()
             },
             success: function (res) {
                 layer.msg(res.message)
@@ -106,6 +107,4 @@ $('tbody').on('click', '.modify', function (e) {
             }
         })
     })
-
-
 })

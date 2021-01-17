@@ -5,13 +5,24 @@
     <meta charset="UTF-8">
     <title>评论模块</title>
     <link rel="stylesheet" type="text/css" href="../assets/lib/layui/css/layui.css">
+    <script>
+        function formatDate(value) {
+            var date = new Date(value);
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            m = m < 10 ? ('0' + m) : m;
+            var d = date.getDate();
+            d = d < 10 ? ('0' + d) : d;
+            return y + '/' + m + '/' + d;
+        }
+    </script>
     <script type="text/html" id="table-tpl">
         {{each data}}
         <tr>
             <td>{{$value.id}}</td>
             <td>{{$value.uname}}</td>
             <td>{{$value.content}}</td>
-            <td>{{$value.cdate}}</td>
+            <td>{{$value.cdate|formatDate}}</td>
             <td>
                 <!-- <button data-id="{{$value.id}}" type="button" class="layui-btn layui-btn-xs edit">
             编辑
