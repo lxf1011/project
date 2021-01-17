@@ -14,7 +14,7 @@ $('.layui-form').on('submit', function (e) {
     e.preventDefault();
     var params = $(this).serialize();
     $.ajax({
-        url: '/admin/users',
+        url: 'admin/users',
         type: 'post',
         data: params,
         success: function (res) {

@@ -25,7 +25,7 @@ function list() {
                     arr.push(`
                     <div class="item">
                     <h4>
-                      <a href="../detail.html?id=${item.id}">${item.title}</a>
+                      <a href="detail.html?id=${item.id}">${item.title}</a>
                     </h4>
                     <p class="meta">
                       <span>19分钟前 分享至</span>

@@ -10,7 +10,7 @@ list();
 
 function list() {
     $.ajax({
-        url: '/admin/users',
+        url: 'admin/users',
         data: data,
         success: function (res) {
             if (res.status == 0) {
@@ -60,9 +60,10 @@ function page(total) {
 // ------------------------------------------------------删除
 $('tbody').on('click', '.delete', function () {
     var id = $(this).attr("data-id");
+    console.log(id);
     layer.confirm("您确认要删除该文章么？", function (index) {
         $.ajax({
-            url: "/admin/users/" + id,
+            url: "admin/users/" + id,
             type: 'delete',
             success: function (res) {
                 layer.msg(res.message);
@@ -75,4 +76,36 @@ $('tbody').on('click', '.delete', function () {
             }
         })
     });
+})
+
+$('tbody').on('click', '.modify', function (e) {
+    console.log(this);
+    var id = $(e.target).data('id');
+    // 弹窗
+    var index = layer.open({
+            type: 1,
+            title: '重置密码',
+            content: $('#repwd-form-tpl').html(),
+            area: ['400px', '200px']
+        }
+
+    )
+
+    // 重置密码
+    $('#rewd-form').submit(function (e) {
+        e.preventDefault()
+        $.ajax({
+            type: 'put',
+            url: 'admin/users/' + id,
+            data: {
+                password: $('#repwd-form input[name=password]').val()
+            },
+            success: function (res) {
+                layer.msg(res.message)
+                layer.close(index)
+            }
+        })
+    })
+
+
 })

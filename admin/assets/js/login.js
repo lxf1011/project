@@ -3,7 +3,7 @@ $('.login-form form').on('submit', function (e) {
     e.preventDefault();
     var params = $(this).serialize();
     $.ajax({
-        url: '/api/login',
+        url: 'api/login',
         type: 'post',
         data: params,
         success: function (res) {
